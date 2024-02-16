@@ -262,7 +262,7 @@ try {
 	sum.forEach(item => {
 		new IMask(item, {
 			mask: Number,
-			min: 500000,
+			min: 5000000,
 			max: 500000000,
 			thousandsSeparator: ' ',
 		})
@@ -848,7 +848,7 @@ try {
 			// Отправляем данные на Bitrix24
 			var bitrixData = {
 				fields: {
-					TITLE: `${name.value} ${phone.value}`,
+					TITLE: 'MODAL',
 					NAME: name.value,
 					PHONE: [{ VALUE: phone.value, VALUE_TYPE: 'WORK' }],
 					OPPORTUNITY: sum.value,
@@ -996,7 +996,7 @@ try {
 			// Отправляем данные на Bitrix24
 			var bitrixData = {
 				fields: {
-					TITLE: `${name.value} ${phone.value}`,
+					TITLE: 'FEEDBACK',
 					NAME: name.value,
 					PHONE: [{ VALUE: phone.value, VALUE_TYPE: 'WORK' }],
 					OPPORTUNITY: sum.value,
