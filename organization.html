@@ -88,9 +88,9 @@
 									перезвонят Вам. Самые выгодные условия для наших клиентов –
 									получить займ в Cash-U под залог или без залога
 								</p>
-								<a class="organization__link modal__btn" href="#">
+								<button class="organization__link modal__btn">
 									Онлайн-заявка
-								</a>
+								</button>
 							</div>
 							<div class="organization__right">
 								<div class="organization__table table">
@@ -205,7 +205,13 @@
 								</div>
 								<div class="modal__form-item item">
 									<span class="item__head">Телефон</span>
-									<input class="modal__form-input" id="phone" type="tel" />
+									<span class="input__before">+998</span>
+									<input
+										class="item__input input__tel phone-input"
+										type="tel"
+										id="phone-wizard"
+										autocomplete="off"
+									/>
 								</div>
 								<div class="modal__form-item item">
 									<span class="item__head">Сумма</span>
@@ -363,8 +369,6 @@
 			</footer>
 		</div>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-		<script src="./js/jquery.maskedinput.min.js"></script>
 		<script src="./js/imask.js"></script>
 		<script src="./js/script.js"></script>
 	</body>

@@ -295,29 +295,6 @@ try {
 	})
 } catch (e) {}
 
-// Input mask tel
-try {
-	let phone = document.querySelector('#phone')
-
-	IMask(phone, {
-		mask: '+998(00)000-00-00',
-		// lazy: false,
-
-		prepare: function (str) {
-			// Custom preparation function to check the first digit
-			if (/^[89]$/.test(str.charAt(0))) {
-				// If the first digit is 8 or 9, move it to the 6th position
-				return ' ' + str.charAt(0) + ' ' + str.slice(1)
-			}
-			return str
-		},
-		onAccept: function (value, mask) {
-			// Triggered whenever a character is accepted
-			console.log('Accepted:', value)
-		},
-	})
-} catch (e) {}
-
 // Accordion Calculate
 try {
 	const calc = document.querySelector('.selection__calc')
@@ -1276,8 +1253,8 @@ try {
 try {
 	const steps = document.querySelectorAll('.steps__item')
 	const wizardStep = document.querySelectorAll('.wizard__step')
-	const wizardPrev = document.querySelector('.wizard__prev')
-	const wizardNext = document.querySelector('.wizard__next')
+	const wizardPrev = document.querySelectorAll('.wizard__prev')
+	const wizardNext = document.querySelectorAll('.wizard__next')
 	const wizardSbmt = document.querySelector('.wizard__sbmt')
 	const wizardTopInfo = document.querySelectorAll('.wizard__top-info')
 	const wizardSumTopInput = document.querySelector('.wizard__sum .top__input')
@@ -1354,60 +1331,74 @@ try {
 	})
 
 	function sumAutoValue() {
-		const data = JSON.parse(localStorage.getItem('data'))
-		const value = parseInt(data.sum.replace(/\s/g, ''))
-		wizardSumResult.value = value.toLocaleString()
-		wizardSumRangeInput.value = value - 5000000
-		const progress = ((value - 5000000) / wizardSumRangeInput.max) * 100
-		wizardSumRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+		if (localStorage.getItem('data')) {
+			const data = JSON.parse(localStorage.getItem('data'))
+			const value = parseInt(data.sum.replace(/\s/g, ''))
+			wizardSumResult.value = value.toLocaleString()
+			wizardSumRangeInput.value = value - 5000000
+			const progress = ((value - 5000000) / wizardSumRangeInput.max) * 100
+			wizardSumRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+		} else {
+			wizardSumResult.value = '5 000 000'
+			wizardSumRangeInput.value = 0
+			const progress = (0 / wizardSumRangeInput.max) * 100
+			wizardSumRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+		}
 	}
 
 	sumAutoValue()
 
 	function termAutoValue() {
-		const data = JSON.parse(localStorage.getItem('data'))
-		const value = parseInt(data.term.replace(/\s/g, ''))
-		if (value <= 3) {
-			wizardTermResult.value = 3
-		} else if (value === 3) {
+		if (localStorage.getItem('data')) {
+			const data = JSON.parse(localStorage.getItem('data'))
+			const value = parseInt(data.term.replace(/\s/g, ''))
+			if (value <= 3) {
+				wizardTermResult.value = 3
+			} else if (value === 3) {
+				wizardTermResult.value = 3
+				wizardTermRangeInput.value = 0
+				const progress = (0 / wizardTermRangeInput.max) * 100
+				wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+			} else if (value === 4 || value === 5 || value === 6) {
+				wizardTermResult.value = 6
+				wizardTermRangeInput.value = 3
+				const progress = (3 / wizardTermRangeInput.max) * 100
+				wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+			} else if (value === 7 || value === 8 || value === 9) {
+				wizardTermResult.value = 9
+				wizardTermRangeInput.value = 6
+				const progress = (6 / wizardTermRangeInput.max) * 100
+				wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+			} else if (value === 10 || value === 11 || value === 12) {
+				wizardTermResult.value = 12
+				wizardTermRangeInput.value = 9
+				const progress = (9 / wizardTermRangeInput.max) * 100
+				wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+			} else if (value === 13 || value === 14 || value === 15) {
+				wizardTermResult.value = 15
+				wizardTermRangeInput.value = 12
+				const progress = (12 / wizardTermRangeInput.max) * 100
+				wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+			} else if (value === 16 || value === 17 || value === 18) {
+				wizardTermResult.value = 18
+				wizardTermRangeInput.value = 15
+				const progress = (15 / wizardTermRangeInput.max) * 100
+				wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+			} else if (value === 19 || value === 20 || value === 21) {
+				wizardTermResult.value = 21
+				wizardTermRangeInput.value = 18
+				const progress = (18 / wizardTermRangeInput.max) * 100
+				wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+			} else if (value === 22 || value === 23 || value === 24) {
+				wizardTermResult.value = 24
+				wizardTermRangeInput.value = 21
+				const progress = (21 / wizardTermRangeInput.max) * 100
+				wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
+			}
+		} else {
 			wizardTermResult.value = 3
 			wizardTermRangeInput.value = 0
 			const progress = (0 / wizardTermRangeInput.max) * 100
-			wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
-		} else if (value === 4 || value === 5 || value === 6) {
-			wizardTermResult.value = 6
-			wizardTermRangeInput.value = 3
-			const progress = (3 / wizardTermRangeInput.max) * 100
-			wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
-		} else if (value === 7 || value === 8 || value === 9) {
-			wizardTermResult.value = 9
-			wizardTermRangeInput.value = 6
-			const progress = (6 / wizardTermRangeInput.max) * 100
-			wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
-		} else if (value === 10 || value === 11 || value === 12) {
-			wizardTermResult.value = 12
-			wizardTermRangeInput.value = 9
-			const progress = (9 / wizardTermRangeInput.max) * 100
-			wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
-		} else if (value === 13 || value === 14 || value === 15) {
-			wizardTermResult.value = 15
-			wizardTermRangeInput.value = 12
-			const progress = (12 / wizardTermRangeInput.max) * 100
-			wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
-		} else if (value === 16 || value === 17 || value === 18) {
-			wizardTermResult.value = 18
-			wizardTermRangeInput.value = 15
-			const progress = (15 / wizardTermRangeInput.max) * 100
-			wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
-		} else if (value === 19 || value === 20 || value === 21) {
-			wizardTermResult.value = 21
-			wizardTermRangeInput.value = 18
-			const progress = (18 / wizardTermRangeInput.max) * 100
-			wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
-		} else if (value === 22 || value === 23 || value === 24) {
-			wizardTermResult.value = 24
-			wizardTermRangeInput.value = 21
-			const progress = (21 / wizardTermRangeInput.max) * 100
 			wizardTermRangeInput.style.background = `linear-gradient(to right, #00b56a ${progress}%, #ccc ${progress}%)`
 		}
 	}
@@ -1696,17 +1687,92 @@ try {
 
 	// Wizard NextBtn, PrevBtn
 
-	wizardNext.addEventListener('click', () => {
-		if (
-			!wizardSumTopInput.classList.contains('error') &&
-			!wizardTermTopInput.classList.contains('error')
-		) {
-			currentStep++
+	wizardNext.forEach(next => {
+		next.addEventListener('click', () => {
+			if (
+				!wizardSumTopInput.classList.contains('error') &&
+				!wizardTermTopInput.classList.contains('error')
+			) {
+				currentStep++
 
-			wizardTopInfo[currentStep - 1].classList.remove(
+				wizardTopInfo[currentStep - 1].classList.remove(
+					'wizard__top-info--active'
+				)
+				wizardTopInfo[currentStep].classList.add('wizard__top-info--active')
+
+				wizardStep.forEach(item => {
+					if (item.classList.contains('wizard__step--active')) {
+						item.classList.remove('wizard__step--active')
+					}
+				})
+
+				if (currentStep == 1) {
+					wizardNext[0].classList.add('hide')
+
+					wizardPrev[1].classList.remove('hide')
+					wizardNext[1].classList.remove('hide')
+				}
+
+				if (currentStep == 2) {
+					wizardPrev[1].classList.add('hide')
+					wizardNext[1].classList.add('hide')
+
+					wizardNext[2].classList.remove('hide')
+					wizardPrev[2].classList.remove('hide')
+				}
+
+				if (currentStep == 3) {
+					wizardPrev[2].classList.add('hide')
+					wizardNext[2].classList.add('hide')
+
+					wizardSbmt.classList.remove('hide')
+					wizardPrev[3].classList.remove('hide')
+				}
+
+				steps[currentStep].classList.add('steps__item--active')
+				if (steps[currentStep].nextElementSibling) {
+					steps[currentStep].nextElementSibling.classList.add(
+						'steps__icon--active'
+					)
+				}
+				wizardStep[currentStep].classList.add('wizard__step--active')
+			}
+		})
+	})
+
+	wizardPrev.forEach(prev => {
+		prev.addEventListener('click', () => {
+			currentStep--
+
+			console.log(currentStep)
+
+			if (currentStep == 0) {
+				wizardPrev[1].classList.add('hide')
+				wizardNext[1].classList.add('hide')
+
+				wizardNext[0].classList.remove('hide')
+			}
+
+			if (currentStep == 1) {
+				wizardPrev[2].classList.add('hide')
+				wizardNext[2].classList.add('hide')
+
+				wizardPrev[1].classList.remove('hide')
+				wizardNext[1].classList.remove('hide')
+			}
+
+			if (currentStep == 2) {
+				wizardPrev[3].classList.add('hide')
+				wizardSbmt.classList.add('hide')
+
+				wizardNext[2].classList.remove('hide')
+				wizardPrev[2].classList.remove('hide')
+			}
+
+			wizardTopInfo[currentStep].classList.add('wizard__top-info--active')
+			wizardTopInfo[currentStep + 1].classList.remove(
 				'wizard__top-info--active'
 			)
-			wizardTopInfo[currentStep].classList.add('wizard__top-info--active')
 
 			wizardStep.forEach(item => {
 				if (item.classList.contains('wizard__step--active')) {
@@ -1714,53 +1780,14 @@ try {
 				}
 			})
 
-			if (currentStep == 1) {
-				wizardPrev.classList.remove('hide')
-			}
-
-			if (currentStep == 3) {
-				wizardNext.classList.add('hide')
-				wizardSbmt.classList.remove('hide')
-			}
-
-			steps[currentStep].classList.add('steps__item--active')
-			if (steps[currentStep].nextElementSibling) {
-				steps[currentStep].nextElementSibling.classList.add(
+			steps[currentStep + 1].classList.remove('steps__item--active')
+			if (steps[currentStep + 1].nextElementSibling) {
+				steps[currentStep + 1].nextElementSibling.classList.remove(
 					'steps__icon--active'
 				)
 			}
 			wizardStep[currentStep].classList.add('wizard__step--active')
-		}
-	})
-
-	wizardPrev.addEventListener('click', () => {
-		currentStep--
-
-		if (currentStep == 0) {
-			wizardPrev.classList.add('hide')
-		}
-
-		wizardTopInfo[currentStep].classList.add('wizard__top-info--active')
-		wizardTopInfo[currentStep + 1].classList.remove('wizard__top-info--active')
-
-		wizardStep.forEach(item => {
-			if (item.classList.contains('wizard__step--active')) {
-				item.classList.remove('wizard__step--active')
-			}
 		})
-
-		if (currentStep == 2) {
-			wizardNext.classList.remove('hide')
-			wizardSbmt.classList.add('hide')
-		}
-
-		steps[currentStep + 1].classList.remove('steps__item--active')
-		if (steps[currentStep + 1].nextElementSibling) {
-			steps[currentStep + 1].nextElementSibling.classList.remove(
-				'steps__icon--active'
-			)
-		}
-		wizardStep[currentStep].classList.add('wizard__step--active')
 	})
 
 	// Pinfl api
@@ -1815,6 +1842,7 @@ try {
 
 	// Wizard form validate
 	wizardSbmt.addEventListener('click', () => {
+		console.log('qwe')
 		if (
 			name.value.length >= 2 &&
 			telephone.value.length === 12 &&
