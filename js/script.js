@@ -738,7 +738,7 @@ try {
 try {
 	const rangeInput = document.querySelector('.credit__range-input input')
 	const result = document.querySelector('.credit-online .top__result')
-	const stages = document.querySelectorAll('.credit-online .stages__item')
+	const stages = document.querySelectorAll('.credit-online .stages__item span')
 
 	rangeInput.addEventListener('input', e => {
 		const progress = (e.target.value / e.target.max) * 100
@@ -960,8 +960,6 @@ try {
 
 	feedbackBtn.addEventListener('click', e => {
 		e.preventDefault()
-
-		console.log(region.textContent)
 
 		if (
 			name.value.length > 2 &&

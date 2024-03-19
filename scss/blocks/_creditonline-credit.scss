@@ -94,8 +94,8 @@
 
 				&::before {
 					content: '';
-					width: 2px;
-					height: 10px;
+					width: 1px;
+					height: 12px;
 					background: #ccc;
 					position: absolute;
 					top: -14px;
@@ -105,15 +105,11 @@
 				}
 
 				&:nth-child(1) {
-					margin-left: -20px;
-
-					&::before {
-						content: none;
-					}
+					left: -30px;
 				}
 
 				&:nth-child(2) {
-					left: 18.5%;
+					left: 18.4%;
 				}
 
 				&:nth-child(3) {
@@ -121,16 +117,11 @@
 				}
 
 				&:nth-child(4) {
-					left: 68.9%;
+					left: 68.85%;
 				}
 
 				&:nth-child(5) {
-					margin-right: -20px;
-					right: 0;
-
-					&::before {
-						content: none;
-					}
+					right: -35px;
 				}
 			}
 		}
@@ -201,7 +192,43 @@
 		}
 
 		&__range {
+			width: 100%;
 			margin: 0 auto;
+
+			.stages {
+				&__item {
+					&:nth-child(1) {
+						left: 0;
+
+						&::before {
+							left: 0;
+							transform: translateX(0);
+						}
+					}
+
+					&:nth-child(2) {
+						left: 18.6%;
+					}
+
+					&:nth-child(3) {
+						left: 43.7%;
+					}
+
+					&:nth-child(4) {
+						left: 69.35%;
+					}
+
+					&:nth-child(5) {
+						right: 0;
+
+						&::before {
+							right: 2px;
+							left: auto;
+							transform: translateX(0);
+						}
+					}
+				}
+			}
 		}
 
 		&__btn {
@@ -211,38 +238,21 @@
 	}
 }
 
-@media (max-width: 992px) {
+@media (max-width: 900px) {
 	.credit-online .credit {
 		&__range {
-			width: 100%;
-
-			.stages__item {
-				&:nth-child(1) {
-					margin-left: -20px;
-
-					&::before {
-						content: none;
+			.stages {
+				&__item {
+					&:nth-child(2) {
+						left: 18.2%;
 					}
-				}
 
-				&:nth-child(2) {
-					left: 18%;
-				}
+					&:nth-child(3) {
+						left: 43%;
+					}
 
-				&:nth-child(3) {
-					left: 43%;
-				}
-
-				&:nth-child(4) {
-					left: 68.4%;
-				}
-
-				&:nth-child(5) {
-					margin-right: -20px;
-					right: 0;
-
-					&::before {
-						content: none;
+					&:nth-child(4) {
+						left: 68.35%;
 					}
 				}
 			}
@@ -285,33 +295,30 @@
 				}
 			}
 
-			.stages__item {
-				&:nth-child(1) {
-					margin-left: 0;
+			.stages {
+				&__item {
+					&:nth-child(2) {
+						left: 22.5%;
 
-					&::before {
-						content: none;
+						span {
+							display: none;
+						}
 					}
-				}
 
-				&:nth-child(2) {
-					left: 20%;
-				}
+					&:nth-child(3) {
+						left: 48%;
 
-				&:nth-child(3) {
-					left: 45%;
-				}
+						span {
+							display: none;
+						}
+					}
 
-				&:nth-child(4) {
-					left: 70.2%;
-				}
+					&:nth-child(4) {
+						left: 73.2%;
 
-				&:nth-child(5) {
-					margin-right: 0;
-					right: 0;
-
-					&::before {
-						content: none;
+						span {
+							display: none;
+						}
 					}
 				}
 			}
@@ -322,71 +329,7 @@
 @media (max-width: 576px) {
 	.credit-online .credit {
 		&__inner {
-			padding: 30px 20px;
-		}
-
-		&__range {
-			.stages__item {
-				&:nth-child(1) {
-					margin-left: 0;
-
-					&::before {
-						content: none;
-					}
-				}
-
-				&:nth-child(2) {
-					left: 19.5%;
-				}
-
-				&:nth-child(3) {
-					left: 43.9%;
-				}
-
-				&:nth-child(4) {
-					left: 69.2%;
-				}
-			}
-		}
-	}
-}
-
-@media (max-width: 480px) {
-	.credit-online .credit {
-		&__range {
-			.stages__item {
-				&:nth-child(2) {
-					left: 18.75%;
-				}
-
-				&:nth-child(3) {
-					left: 43.25%;
-				}
-
-				&:nth-child(4) {
-					left: 67.7%;
-				}
-			}
-		}
-	}
-}
-
-@media (max-width: 390px) {
-	.credit-online .credit {
-		&__range {
-			.stages__item {
-				&:nth-child(2) {
-					left: 18%;
-				}
-
-				&:nth-child(3) {
-					left: 41.25%;
-				}
-
-				&:nth-child(4) {
-					left: 65.7%;
-				}
-			}
+			padding: 30px 15px;
 		}
 	}
 }
